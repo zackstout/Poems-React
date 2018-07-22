@@ -21,12 +21,35 @@ router.post('/', function (req, res) {
 }); 
 
 // GET Route
-router.get('/', function (req, res) {
+// router.get('/', function (req, res) {
+//     pool.connect(function(err, db, done) {
+//         if (err) {
+//           console.log(err);
+//         } else {
+//           var queryText = "SELECT line, author, title, lineno FROM lines JOIN poems ON poems.id=lines.poem_id WHERE line LIKE '% water%';";
+//           db.query(queryText, [], function (errorMakingQuery, result) {
+//             done();
+//             if (errorMakingQuery) {
+//               console.log('Error with poems GET', errorMakingQuery);
+//               res.sendStatus(501);
+//             } else {
+//               res.send(result.rows);
+//             }
+//           });
+//         }
+//       });
+// }); 
+
+
+
+// SELECTING ALL -- WILL THAT HURT PERFORMANCE? -- 
+// Answer: Yes. It's 420,000 rows, and it takes a couple seconds. Don't do this.
+router.get('/random', function (req, res) {
     pool.connect(function(err, db, done) {
         if (err) {
           console.log(err);
         } else {
-          var queryText = "SELECT line, author, title, lineno FROM lines JOIN poems ON poems.id=lines.poem_id WHERE line LIKE '% water%';";
+          var queryText = `SELECT line, author, title, lineno FROM lines JOIN poems ON poems.id=lines.poem_id;`;
           db.query(queryText, [], function (errorMakingQuery, result) {
             done();
             if (errorMakingQuery) {

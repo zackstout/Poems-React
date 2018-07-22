@@ -3,6 +3,7 @@
 - Do not forget to add `&& node server/server.js` to the `start` script in `package.json`.
 - You do not need to install Express manually.
 - We need to figure out how to optimize the workflow, to how it initially is. I don't like restarting the server manually anytime we make any change, and rebuilding to see it.
+- For some reason, `$1, $2, ...` syntax isn't working in our router.
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

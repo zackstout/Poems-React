@@ -29,7 +29,7 @@ class CreatePoem extends Component {
 
   randomSearch = () => {
     console.log('pinging random search ...');
-    axios.get('/poems')
+    axios.get('/poems/random')
     .then(res => {
       console.log(res);
     })
