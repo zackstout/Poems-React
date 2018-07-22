@@ -22,26 +22,6 @@ router.post('/', function (req, res) {
     
 }); 
 
-// GET Route
-// router.get('/', function (req, res) {
-//     pool.connect(function(err, db, done) {
-//         if (err) {
-//           console.log(err);
-//         } else {
-//           var queryText = "SELECT line, author, title, lineno FROM lines JOIN poems ON poems.id=lines.poem_id WHERE line LIKE '% water%';";
-//           db.query(queryText, [], function (errorMakingQuery, result) {
-//             done();
-//             if (errorMakingQuery) {
-//               console.log('Error with poems GET', errorMakingQuery);
-//               res.sendStatus(501);
-//             } else {
-//               res.send(result.rows);
-//             }
-//           });
-//         }
-//       });
-// }); 
-
 
 
 // SELECTING ALL -- WILL THAT HURT PERFORMANCE? -- 
@@ -56,28 +36,31 @@ router.get('/random', function (req, res) {
               // It's so many I won't even worry about possibility of duplicates for now:
               random_indices.push(Math.floor(Math.random() * 422920));
           }
-          console.log("indices: ", random_indices);
+        //   console.log("indices: ", random_indices);
 
           let resultRows = [];
           while (random_indices.length > 0) {
             const popped = random_indices.pop();
-            console.log(popped);
+            // console.log(popped);
             var queryText = `SELECT line_id, line, author, title, lineno FROM lines JOIN poems ON poems.poem_id=lines.poem_id WHERE line_id = ${popped};`;
             db.query(queryText, [], function (errorMakingQuery, result) {
               if (errorMakingQuery) {
                 console.log('Error with poems GET', errorMakingQuery);
                 res.sendStatus(501);
               } else {
-                console.log(result);
+                // console.log(result);
                 resultRows.push(result.rows[0]);
               }
             });
           }
 
-          // Oooh it must be some async problem...Duh.
-          console.log("rows: ", resultRows);
-          done();
-          res.send(resultRows);
+          // Oooh it must be some async problem...Duh. Just super hack for now:
+          setTimeout(() => {
+            // console.log("rows: ", resultRows);
+            done();
+            res.send(resultRows);
+          }, 500);
+
         }
       });
 }); 
@@ -88,7 +71,7 @@ router.get('/term/:term', function (req, res) {
         if (err) {
           console.log(err);
         } else {
-          var queryText = `SELECT line, author, title, lineno FROM lines JOIN poems ON poems.poem_id=lines.poem_id WHERE line LIKE '% ${req.params.term}%';`;
+          var queryText = `SELECT line_id, line, author, title, lineno FROM lines JOIN poems ON poems.poem_id=lines.poem_id WHERE line LIKE '% ${req.params.term}%';`;
           db.query(queryText, [], function (errorMakingQuery, result) {
             done();
             if (errorMakingQuery) {
@@ -101,5 +84,6 @@ router.get('/term/:term', function (req, res) {
         }
       });
 }); 
+
 
 module.exports = router;

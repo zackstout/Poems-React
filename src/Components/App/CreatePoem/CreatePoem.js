@@ -6,12 +6,14 @@ import PoemCreationInput from './PoemCreationInput/PoemCreationInput.js';
 import PoemEditing from './PoemEditing/PoemEditing.js';
 import SourcePoems from './SourcePoems/SourcePoems.js';
 
+const TERM_LENGTH = 10; // It's ugly that we're also setting RANDOM_LENGTH in the router
+
 class CreatePoem extends Component {
 
   constructor() {
     super();
     this.state = {
-
+      sourceLines: [],
     };
   
   };
@@ -20,11 +22,20 @@ class CreatePoem extends Component {
     console.log('hi ', term);
     axios.get(`/poems/term/${term}`)
     .then(res => {
-      console.log(res);
+      console.log("res is ", res);
+      // There is cleaner way to do this with new array and map:
+      let random_indices = [];
+      for (let i=0; i < TERM_LENGTH; i++) {
+        random_indices.push(Math.floor(Math.random() * res.data.length));
+      }
+      console.log('indices are', random_indices);
+      const filtered_poems = res.data.filter((d, ind) => random_indices.includes(ind));
+      console.log("filtered are ", filtered_poems);
+
     })
     .catch(err => {
       console.log(err.response);
-    })
+    });
   }
 
   randomSearch = () => {
