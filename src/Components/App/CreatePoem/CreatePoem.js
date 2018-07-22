@@ -144,10 +144,10 @@ class CreatePoem extends Component {
         </div>
 
         <div class="row">
-          <div class="col">
+          <div class="col-md-7">
             <PoemEditing submitPoem={this.submitPoem} moveLine={this.moveLine} removeLine={this.removeLine} poemEditing={this.state.poemEditing} />
           </div>
-          <div class="col">
+          <div class="col-md-5">
             <SourcePoems addLine={this.addLine} sourceLines={this.state.sourceLines} />
           </div>
         </div>
