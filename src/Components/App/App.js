@@ -14,7 +14,7 @@ class App extends Component {
 
     };
     
-    this.pingDB = this.pingDB.bind(this);
+    // this.pingDB = this.pingDB.bind(this);
 
   };
 

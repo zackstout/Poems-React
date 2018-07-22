@@ -13,36 +13,27 @@ class PoemCreationInput extends Component {
         super();
 
         this.state = new TermSearch();
-
-        this.handleTermChange = this.handleTermChange.bind(this);
-        this.handleTermSubmit = this.handleTermSubmit.bind(this);
-        this.handleRandomSubmit = this.handleRandomSubmit.bind(this);
-        this.clearSearchFields = this.clearSearchFields.bind(this);
     }
 
     // Called when the input field changes
-    handleTermChange(event) {
-        this.setState(new TermSearch(event.target.value));
-    }
+    handleTermChange = (event) => this.setState(new TermSearch(event.target.value));
 
     // Called when the submit button is pressed
-    handleTermSubmit(event) {
+    handleTermSubmit = (event) => {
         event.preventDefault();
         this.props.termSearch(this.state);
         console.log(this.state);
         this.clearSearchFields();
     }
 
-    handleRandomSubmit(event) {
+    handleRandomSubmit = (event) => {
         event.preventDefault();
         this.props.randomSearch();
         this.clearSearchFields();
     }
 
     // Clear fields of the form by reseting the user
-    clearSearchFields() {
-        this.setState(new TermSearch());
-    }
+    clearSearchFields = () =>this.setState(new TermSearch());
 
     render() {
         return (

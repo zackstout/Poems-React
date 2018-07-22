@@ -13,16 +13,14 @@ class CreatePoem extends Component {
     this.state = {
 
     };
-    
-    this.randomSearch = this.randomSearch.bind(this);
-    this.termSearch = this.termSearch.bind(this);
+  
   };
 
-  termSearch(term) {
+  termSearch = (term) => {
     console.log('hi ', term);
   }
 
-  randomSearch() {
+  randomSearch = () => {
     console.log('pinging random search ...');
     axios.get('/poems')
     .then(res => {
