@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import CreatePoem from './CreatePoem/CreatePoem.js';
+import PoemsFeed from './PoemsFeed/PoemsFeed.js';
 
 class App extends Component {
 
@@ -17,16 +18,16 @@ class App extends Component {
 
   };
 
-  pingDB() {
-    console.log('pinging');
-    axios.get('/poems')
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err.response);
-    })
-  }
+  // pingDB() {
+  //   console.log('pinging');
+  //   axios.get('/poems')
+  //   .then(res => {
+  //     console.log(res);
+  //   })
+  //   .catch(err => {
+  //     console.log(err.response);
+  //   })
+  // }
 
 
   render() {
@@ -37,7 +38,9 @@ class App extends Component {
           Let's make some fuckin poems!
         </p>
 
-        <CreatePoem pingDB = {this.pingDB} />
+        <PoemsFeed />
+        <br/>
+        <CreatePoem />
 
       </div>
     );

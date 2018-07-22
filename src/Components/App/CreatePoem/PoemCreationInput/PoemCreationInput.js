@@ -14,28 +14,28 @@ class PoemCreationInput extends Component {
 
         this.state = new TermSearch();
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleTermChange = this.handleTermChange.bind(this);
+        this.handleTermSubmit = this.handleTermSubmit.bind(this);
         this.handleRandomSubmit = this.handleRandomSubmit.bind(this);
         this.clearSearchFields = this.clearSearchFields.bind(this);
     }
 
     // Called when the input field changes
-    handleChange(event) {
+    handleTermChange(event) {
         this.setState(new TermSearch(event.target.value));
     }
 
     // Called when the submit button is pressed
-    handleSubmit(event) {
+    handleTermSubmit(event) {
         event.preventDefault();
-        this.props.getLinesWithTerm(this.state);
+        this.props.termSearch(this.state);
         console.log(this.state);
         this.clearSearchFields();
     }
 
     handleRandomSubmit(event) {
         event.preventDefault();
-        this.props.getRandomLines();
+        this.props.randomSearch();
         this.clearSearchFields();
     }
 
@@ -47,8 +47,8 @@ class PoemCreationInput extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.handleChange} placeholder="Search for ..." value={this.state.term} name="term" />
+                <form onSubmit={this.handleTermSubmit}>
+                    <input onChange={this.handleTermChange} placeholder="Search for ..." value={this.state.term} name="term" />
                     <input type="submit" value="Submit" />
                 </form>
                 <button onClick={this.handleRandomSubmit}>Random</button>
