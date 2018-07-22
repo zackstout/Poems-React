@@ -8,18 +8,18 @@ class PoemsFeed extends Component {
         console.log(poem);
     }
 
-  render() {
-    const poems = this.props.poems.map(poem => <Poem id={poem.id} likePoem={this.likePoem} author={poem.author} title={poem.title} lines={poem.lines}/>);
+    render() {
+        const poems = this.props.poems.map(poem => <Poem id={poem.id} likePoem={this.likePoem} author={poem.author} title={poem.title} lines={poem.lines} />);
 
-    return (
-      <div>
-       <h3>Feed of Poems</h3>
-        <ul>
-            { poems } 
-        </ul>
-      </div>
-    );
-  }
+        return (
+            <div>
+                <h3>Feed of Poems</h3>
+                <ul>
+                    {poems}
+                </ul>
+            </div>
+        );
+    }
 }
 
 export default PoemsFeed;

@@ -18,11 +18,11 @@ class SubmitPoem extends Component {
     constructor() {
         super();
 
-        this.state = 
-        {
-            author: new AuthorInput(),
-            title: new TitleInput()
-        }
+        this.state =
+            {
+                author: new AuthorInput(),
+                title: new TitleInput()
+            }
     }
 
     // Called when the input field changes
@@ -40,20 +40,20 @@ class SubmitPoem extends Component {
 
     // Clear fields of the form by reseting the user
     clearInputFields = () => {
-        this.setState({author: new AuthorInput()});
-        this.setState({title: new TitleInput()});
+        this.setState({ author: new AuthorInput() });
+        this.setState({ title: new TitleInput() });
     };
 
-  render() {
+    render() {
 
-    return (
-        <form onSubmit={this.handleSubmit}>
-            <input onChange={this.handleAuthorChange} placeholder="Authored by ..." value={this.state.author.author} name="author" />
-            <input onChange={this.handleTitleChange} placeholder="Titled ..." value={this.state.title.title} name="title" />
-            <input type="submit" value="Submit Poem" />
-        </form>
-    );
-  }
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <input onChange={this.handleAuthorChange} placeholder="Authored by ..." value={this.state.author.author} name="author" />
+                <input onChange={this.handleTitleChange} placeholder="Titled ..." value={this.state.title.title} name="title" />
+                <input type="submit" value="Submit Poem" />
+            </form>
+        );
+    }
 }
 
 export default SubmitPoem;

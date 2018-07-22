@@ -32,7 +32,7 @@ class PoemCreationInput extends Component {
     }
 
     // Clear fields of the form by reseting the user
-    clearSearchFields = () =>this.setState(new TermSearch());
+    clearSearchFields = () => this.setState(new TermSearch());
 
     render() {
         return (

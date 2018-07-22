@@ -4,6 +4,11 @@ import './App.css';
 import axios from 'axios';
 import CreatePoem from './CreatePoem/CreatePoem.js';
 import PoemsFeed from './PoemsFeed/PoemsFeed.js';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 
 class App extends Component {
 
@@ -19,7 +24,7 @@ class App extends Component {
     let res = [];
     let prevLine = poem_lines[0];
     let lines = [];
-    for (let i=0; i < poem_lines.length; i++) {
+    for (let i = 0; i < poem_lines.length; i++) {
       const line = poem_lines[i];
       if (prevLine.user_poem_id !== line.user_poem_id) {
         // Start a new poem:
@@ -51,31 +56,46 @@ class App extends Component {
 
   getPoems = () => {
     axios.get('/poems/feed')
-    .then(res => {
-      console.log(res);
-      const cleanedPoems = this.cleanPoems(res.data);
-      this.setState({poems: cleanedPoems});
-    })
-    .catch(err => {
-      console.log(err.response);
-    })
+      .then(res => {
+        console.log(res);
+        const cleanedPoems = this.cleanPoems(res.data);
+        this.setState({ poems: cleanedPoems });
+      })
+      .catch(err => {
+        console.log(err.response);
+      })
   }
 
   componentDidMount() {
     this.getPoems();
   }
 
-  render() {
-    return (
-      <div className="App">
-        <p>
-          Let's make some fuckin poems!
-        </p>
 
-        <PoemsFeed poems={this.state.poems}/>
-        <br/>
-        <CreatePoem getPoems={this.getPoems}/>
+  render() {
+    const Make = () => (
+      <div class="App">
+        <CreatePoem getPoems={this.getPoems} />
       </div>
+    )
+    const Feed = () => (
+      <div class="App">
+        <PoemsFeed poems={this.state.poems} />
+      </div>
+    )
+    return (
+      <Router>
+        <div>
+          <ul>
+            <li><Link to="/make">Make</Link></li>
+            <li><Link to="/feed">Feed</Link></li>
+          </ul>
+
+          <hr />
+
+          <Route path="/make" component={Make} />
+          <Route path="/feed" component={Feed} />
+        </div>
+      </Router>
     );
   }
 }
