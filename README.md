@@ -1,9 +1,18 @@
 
+## Built With:
+- React front-end
+- PostgreSQL database
+- Node/Express server
+- Node web-scraping
+
 ## Personal Notes:
 - Do not forget to add `&& node server/server.js` to the `start` script in `package.json`.
 - You do not need to install Express manually.
 - We need to figure out how to optimize the workflow, to how it initially is. I don't like restarting the server manually anytime we make any change, and rebuilding to see it.
-- For some reason, `$1, $2, ...` syntax isn't working in our router.
+- React has great syntax warnings about == and unused vars etc.
+- Don't forget the constructor; needed to access `this.props`.
+- The up/down functionality is still buggy for duplicate rows...
+- Would be nice to optionally show the original authors/titles of each line (both in feed, and on poem creation).
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

@@ -1,15 +1,21 @@
 
 import React, { Component } from 'react';
+import Poem from './Poem/Poem.js';
 
 class PoemsFeed extends Component {
+
+    likePoem = (poem) => {
+        console.log(poem);
+    }
+
   render() {
-    const lines = this.props.poems.map(line => <li key={line._id}> {line.line}, {line.author}, {line.title} </li>);
+    const poems = this.props.poems.map(poem => <Poem id={poem.id} likePoem={this.likePoem} author={poem.author} title={poem.title} lines={poem.lines}/>);
 
     return (
       <div>
        <h3>Feed of Poems</h3>
         <ul>
-            { lines } 
+            { poems } 
         </ul>
       </div>
     );

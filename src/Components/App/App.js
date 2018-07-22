@@ -15,11 +15,46 @@ class App extends Component {
     };
   };
 
+  cleanPoems = (poem_lines) => {
+    let res = [];
+    let prevLine = poem_lines[0];
+    let lines = [];
+    for (let i=0; i < poem_lines.length; i++) {
+      const line = poem_lines[i];
+      if (prevLine.user_poem_id !== line.user_poem_id) {
+        // Start a new poem:
+        res.push({
+          author: prevLine.author,
+          title: prevLine.title,
+          id: prevLine.user_poem_id,
+          lines: lines
+        });
+        lines = [line.line];
+        prevLine = line;
+      } else {
+        // Continue a poem:
+        lines.push(line.line);
+      }
+      // Last poem:
+      if (i == poem_lines.length - 1) {
+        res.push({
+          author: prevLine.author,
+          title: prevLine.title,
+          id: prevLine.user_poem_id,
+          lines: lines
+        });
+      }
+    }
+    console.log(res);
+    return res;
+  }
+
   getPoems = () => {
     axios.get('/poems/feed')
     .then(res => {
       console.log(res);
-      this.setState({poems: res.data});
+      const cleanedPoems = this.cleanPoems(res.data);
+      this.setState({poems: cleanedPoems});
     })
     .catch(err => {
       console.log(err.response);
