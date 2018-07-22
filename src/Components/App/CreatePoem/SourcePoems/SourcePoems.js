@@ -9,7 +9,7 @@ class SourcePoems extends Component {
     
     return (
       <div>
-       <p>Source poems:</p>
+       <h3>Source lines:</h3>
         <ul>
             { sourceLines } 
         </ul>

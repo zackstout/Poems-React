@@ -11,10 +11,24 @@ class App extends Component {
     super();
 
     this.state = {
-
+      poems: []
     };
   };
 
+  getPoems = () => {
+    axios.get('/poems/feed')
+    .then(res => {
+      console.log(res);
+      this.setState({poems: res.data});
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+
+  componentDidMount() {
+    this.getPoems();
+  }
 
   render() {
     return (
@@ -23,9 +37,9 @@ class App extends Component {
           Let's make some fuckin poems!
         </p>
 
-        <PoemsFeed />
+        <PoemsFeed poems={this.state.poems}/>
         <br/>
-        <CreatePoem />
+        <CreatePoem getPoems={this.getPoems}/>
       </div>
     );
   }

@@ -23,7 +23,8 @@ class CreatePoem extends Component {
       },
       lineID: 0
     };
-  };
+  }
+
 
   termSearch = (term) => {
     console.log('hi ', term);
@@ -108,9 +109,27 @@ class CreatePoem extends Component {
     this.setState({poemEditing: poemEditing});
   }
 
-  submitPoem = (poem) => {
-
+  submitPoem = (author, title) => {
+    console.log(author, title, this.state.poemEditing.lines);
+    const poemInfo = {
+      author: author,
+      title: title,
+      lines: this.state.poemEditing.lines
+    }
+    axios.post('/poems', poemInfo)
+    .then(res => {
+      console.log(res);
+      // Clear out lines:
+      const poemEditing = {...this.state.poemEditing};
+      poemEditing.lines = [];
+      this.setState({poemEditing: poemEditing});
+      this.props.getPoems();
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
   }
+
 
   render() {
     return (
