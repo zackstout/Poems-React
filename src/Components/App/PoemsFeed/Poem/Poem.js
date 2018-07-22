@@ -26,9 +26,9 @@ class Poem extends Component {
                 </div>
 
                 <button name={this.props.id} onClick={this.handleLike}>Like</button>
-                &emsp; &emsp;
+       
                 <button name={this.props.id} onClick={this.handleInfo}>See Info</button>
-
+                <hr />
             </div>
         );
     }

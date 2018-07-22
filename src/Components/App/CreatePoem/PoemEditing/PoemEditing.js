@@ -5,7 +5,7 @@ import SubmitPoem from './SubmitPoem/SubmitPoem.js';
 class PoemEditing extends Component {
     render() {
         // Hideous:
-        const poemLines = this.props.poemEditing.lines.map(line => <li key={line._id}> {line.line} <button onClick={() => this.props.moveLine(line, "up")}>▲</button> <button onClick={() => this.props.moveLine(line, "down")}>▼</button> <button onClick={() => this.props.removeLine(line)}>Remove</button> </li>);
+        const poemLines = this.props.poemEditing.lines.map(line => <li key={line._id}> {line.line} <button onClick={() => this.props.moveLine(line, "up")}>▲</button> <button onClick={() => this.props.moveLine(line, "down")}>▼</button> <button onClick={() => this.props.removeLine(line)}>‒</button> </li>);
 
         return (
             <div>

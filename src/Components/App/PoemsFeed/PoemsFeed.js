@@ -39,9 +39,7 @@ class PoemsFeed extends Component {
                     </ul>
                 </div>
 
-                <div class="col-md-4">
-                    <h3>Poem Origins Info</h3>
-                    
+                <div class="col-md-4">                    
                     <PoemOrigins info={this.state.linesInPoem}/>
                 </div>
 

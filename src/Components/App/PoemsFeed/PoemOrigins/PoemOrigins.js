@@ -14,7 +14,8 @@ class PoemOrigins extends Component {
         </div>);
 
         return (
-            <div>
+            <div class="sticky">
+                <h3>Poem Origins:</h3>
                 { lines }
             </div>
         );

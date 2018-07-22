@@ -22,11 +22,30 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 
 .poem {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+}
+
+.sticky {
+  /* display: block; */
+  position: fixed;
+  top: 100;
+  /* width: 100%; */
+}
+
+.nav {
+  margin: 20px;
+}
+
+button {
+  margin: 6px;
+}
+
+input {
+  margin: 6px;
+}
+
+h3 { 
+  margin-bottom: 15px;
 }
