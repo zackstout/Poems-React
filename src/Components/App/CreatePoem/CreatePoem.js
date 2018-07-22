@@ -12,10 +12,17 @@ class CreatePoem extends Component {
 
   constructor() {
     super();
+
     this.state = {
       sourceLines: [],
+      poemEditing: {
+        lines: [],
+        author: '',
+        createdAt: 0,
+        title: ''
+      },
+      lineID: 0
     };
-  
   };
 
   termSearch = (term) => {
@@ -28,9 +35,9 @@ class CreatePoem extends Component {
       for (let i=0; i < TERM_LENGTH; i++) {
         random_indices.push(Math.floor(Math.random() * res.data.length));
       }
-      console.log('indices are', random_indices);
+      // console.log('indices are', random_indices);
       const filtered_poems = res.data.filter((d, ind) => random_indices.includes(ind));
-      console.log("filtered are ", filtered_poems);
+      // console.log("filtered are ", filtered_poems);
       this.setState({sourceLines: filtered_poems});
     })
     .catch(err => {
@@ -43,11 +50,66 @@ class CreatePoem extends Component {
     axios.get('/poems/random')
     .then(res => {
       console.log(res);
-      this.setState({sourceLines: res.data});
+      this.setState({sourceLines: res.data.slice(0, 10)});
     })
     .catch(err => {
       console.log(err.response);
     })
+  }
+
+  addLine = (line) => {
+    const poemEditing = {...this.state.poemEditing};
+    line.lineID = this.state.lineID;
+    this.setState({lineID: this.state.lineID + 1});
+
+    poemEditing.lines = poemEditing.lines.concat(line);
+    this.setState({poemEditing: poemEditing});
+  }
+
+  removeLine = (line) => {
+    const poemEditing = {...this.state.poemEditing};
+
+    let ind;
+    for (let i=0; i < poemEditing.lines.length; i++) {
+      if (poemEditing.lines[i].lineID == line.lineID) {
+        ind = i; 
+        break;
+      }
+    }
+    poemEditing.lines.splice(ind, 1);
+    this.setState({poemEditing: poemEditing});
+  }
+
+  moveLine = (line, direction) => {
+    const poemEditing = {...this.state.poemEditing};
+
+    let ind;
+    for (let i=0; i < poemEditing.lines.length; i++) {
+      if (poemEditing.lines[i].lineID == line.lineID) {
+        ind = i; 
+        break;
+      }
+    }
+
+    if (direction == 'up' && ind == 0 || direction == 'down' && ind == poemEditing.lines.length - 1) return;
+
+    const movingElement = poemEditing.lines[ind];
+    console.log(direction, ind, movingElement, poemEditing.lines, line);
+
+    if (direction == 'up') {
+      const temp = poemEditing.lines[ind - 1];
+      poemEditing.lines[ind - 1] = movingElement;
+      poemEditing.lines[ind] = temp;
+    } else {
+      const temp = poemEditing.lines[ind + 1];
+      poemEditing.lines[ind + 1] = movingElement;
+      poemEditing.lines[ind] = temp;
+    }
+    this.setState({poemEditing: poemEditing});
+  }
+
+  submitPoem = (poem) => {
+
   }
 
   render() {
@@ -57,9 +119,9 @@ class CreatePoem extends Component {
         <br/>
         <PoemCreationInput termSearch={this.termSearch} randomSearch={this.randomSearch}/>
         <br />
-        <PoemEditing />
+        <PoemEditing submitPoem={this.submitPoem} moveLine={this.moveLine} removeLine={this.removeLine} poemEditing={this.state.poemEditing}/>
         <br />
-        <SourcePoems sourceLines={this.state.sourceLines}/>
+        <SourcePoems addLine={this.addLine} sourceLines={this.state.sourceLines}/>
 
       </div>
     );

@@ -32,13 +32,15 @@ router.get('/random', function (req, res) {
           console.log(err);
         } else {
           let random_indices = [];
-          for (let i=0; i < RANDOM_LENGTH; i++) {
+          // Just multiplying by 3 to try to avoid blanks:
+          for (let i=0; i < RANDOM_LENGTH * 3; i++) {
               // It's so many I won't even worry about possibility of duplicates for now:
               random_indices.push(Math.floor(Math.random() * 422920));
           }
-        //   console.log("indices: ", random_indices);
 
           let resultRows = [];
+
+          // Not sure why we can't check against resultRows.length ... Oh well, we'll just clip it on the client side:
           while (random_indices.length > 0) {
             const popped = random_indices.pop();
             // console.log(popped);
@@ -48,8 +50,10 @@ router.get('/random', function (req, res) {
                 console.log('Error with poems GET', errorMakingQuery);
                 res.sendStatus(501);
               } else {
-                // console.log(result);
-                resultRows.push(result.rows[0]);
+                // console.log("RESULTS: ", result.rows[0]);
+                if (result.rows[0].line != '') {
+                    resultRows.push(result.rows[0]);
+                }
               }
             });
           }

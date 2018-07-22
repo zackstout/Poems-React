@@ -5,7 +5,7 @@ class SourcePoems extends Component {
     
    
     render() {
-    const sourceLines = this.props.sourceLines.map(line => <li key={line._id}> {line.line} </li>);
+    const sourceLines = this.props.sourceLines.map(line => <li key={line._id}> {line.line} <button onClick={ () => this.props.addLine(line) }>Add Line</button> </li>);
     
     return (
       <div>
@@ -13,7 +13,6 @@ class SourcePoems extends Component {
         <ul>
             { sourceLines } 
         </ul>
-
       </div>
     );
   }
