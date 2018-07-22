@@ -134,13 +134,23 @@ class CreatePoem extends Component {
   render() {
     return (
       <div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <PoemCreationInput termSearch={this.termSearch} randomSearch={this.randomSearch} />
+          </div>
+          <div class="col-md-4"></div>
 
-        <br />
-        <PoemCreationInput termSearch={this.termSearch} randomSearch={this.randomSearch} />
-        <br />
-        <PoemEditing submitPoem={this.submitPoem} moveLine={this.moveLine} removeLine={this.removeLine} poemEditing={this.state.poemEditing} />
-        <br />
-        <SourcePoems addLine={this.addLine} sourceLines={this.state.sourceLines} />
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <PoemEditing submitPoem={this.submitPoem} moveLine={this.moveLine} removeLine={this.removeLine} poemEditing={this.state.poemEditing} />
+          </div>
+          <div class="col">
+            <SourcePoems addLine={this.addLine} sourceLines={this.state.sourceLines} />
+          </div>
+        </div>
 
       </div>
     );

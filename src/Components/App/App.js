@@ -34,11 +34,23 @@ class App extends Component {
           id: prevLine.user_poem_id,
           lines: lines
         });
-        lines = [line.line];
+        const lineToAdd = {
+          line: line.line,
+          original_author: line.original_author,
+          original_title: line.original_title,
+          original_lineno: line.original_lineno,
+        }
+        lines = [lineToAdd];
         prevLine = line;
       } else {
         // Continue a poem:
-        lines.push(line.line);
+        const lineToAdd = {
+          line: line.line,
+          original_author: line.original_author,
+          original_title: line.original_title,
+          original_lineno: line.original_lineno,
+        }
+        lines.push(lineToAdd);
       }
       // Last poem:
       if (i == poem_lines.length - 1) {
@@ -46,6 +58,9 @@ class App extends Component {
           author: prevLine.author,
           title: prevLine.title,
           id: prevLine.user_poem_id,
+          original_author: prevLine.original_author,
+          original_title: prevLine.original_title,
+          original_lineno: prevLine.original_lineno,
           lines: lines
         });
       }

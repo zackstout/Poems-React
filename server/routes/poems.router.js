@@ -114,7 +114,8 @@ router.get('/feed', function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            var queryText = `SELECT user_poem_id, author, title, line FROM user_poems JOIN lines ON lines.line_id = user_poems.original_line_id;`;
+            // Unsure whether issue was quote marks (unlikely) or wrong ordering of JOIN clause (likely):
+            var queryText = `SELECT user_poem_id, "user_poems"."author" as "author", "user_poems"."title" as title, "lines"."line" as line, "poems"."author" as original_author, "poems"."title" as original_title, "lines"."lineno" as original_lineno FROM user_poems JOIN lines ON lines.line_id = user_poems.original_line_id JOIN poems ON poems.poem_id = lines.poem_id;`;
             db.query(queryText, [], function (errorMakingQuery, result) {
                 done();
                 if (errorMakingQuery) {
