@@ -40,4 +40,24 @@ router.get('/', function (req, res) {
       });
 }); 
 
+
+router.get('/term/:term', function (req, res) {
+    pool.connect(function(err, db, done) {
+        if (err) {
+          console.log(err);
+        } else {
+          var queryText = `SELECT line, author, title, lineno FROM lines JOIN poems ON poems.id=lines.poem_id WHERE line LIKE '% ${req.params.term}%';`;
+          db.query(queryText, [], function (errorMakingQuery, result) {
+            done();
+            if (errorMakingQuery) {
+              console.log('Error with poems GET', errorMakingQuery);
+              res.sendStatus(501);
+            } else {
+              res.send(result.rows);
+            }
+          });
+        }
+      });
+}); 
+
 module.exports = router;

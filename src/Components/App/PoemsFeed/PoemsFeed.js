@@ -5,7 +5,7 @@ class PoemsFeed extends Component {
   render() {
     return (
       <div>
-       hi
+       poem feed
 
       </div>
     );

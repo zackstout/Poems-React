@@ -5,7 +5,7 @@ class PoemEditing extends Component {
   render() {
     return (
       <div>
-       hi
+       poem currently editing
 
       </div>
     );

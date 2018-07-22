@@ -18,6 +18,13 @@ class CreatePoem extends Component {
 
   termSearch = (term) => {
     console.log('hi ', term);
+    axios.get(`/poems/term/${term}`)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
   }
 
   randomSearch = () => {
