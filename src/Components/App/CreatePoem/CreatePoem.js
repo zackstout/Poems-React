@@ -31,7 +31,7 @@ class CreatePoem extends Component {
       console.log('indices are', random_indices);
       const filtered_poems = res.data.filter((d, ind) => random_indices.includes(ind));
       console.log("filtered are ", filtered_poems);
-
+      this.setState({sourceLines: filtered_poems});
     })
     .catch(err => {
       console.log(err.response);
@@ -43,6 +43,7 @@ class CreatePoem extends Component {
     axios.get('/poems/random')
     .then(res => {
       console.log(res);
+      this.setState({sourceLines: res.data});
     })
     .catch(err => {
       console.log(err.response);
@@ -58,7 +59,7 @@ class CreatePoem extends Component {
         <br />
         <PoemEditing />
         <br />
-        <SourcePoems />
+        <SourcePoems sourceLines={this.state.sourceLines}/>
 
       </div>
     );

@@ -22,7 +22,6 @@ class PoemCreationInput extends Component {
     handleTermSubmit = (event) => {
         event.preventDefault();
         this.props.termSearch(this.state.term);
-        console.log(this.state);
         this.clearSearchFields();
     }
 
