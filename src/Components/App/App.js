@@ -1,18 +1,44 @@
+
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
 import './App.css';
+import axios from 'axios';
+import CreatePoem from './CreatePoem/CreatePoem.js';
 
 class App extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+
+    };
+    
+    this.pingDB = this.pingDB.bind(this);
+
+  };
+
+  pingDB() {
+    console.log('pinging');
+    axios.get('/poems')
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          hi hi hiTo get started, edit <code>src/App.js</code> and save to reload.
+
+        <p>
+          Let's make some fuckin poems!
         </p>
+
+        <CreatePoem pingDB = {this.pingDB} />
+
       </div>
     );
   }
