@@ -18,9 +18,11 @@
 - Some of our components should be refactored for reusability (like for inputs) -- but then if you're passing *everything* into that component, it seems like you might as well just write it inline in JSX in the first place...
 
 ## Screenshots:
+![](src/images/making.png)
+![](src.images/viewing.png)
 
 ## Animation:
-
+![](https://media.giphy.com/media/3odNQJs4G09Li5gac9/giphy.gif)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

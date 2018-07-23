@@ -25,6 +25,9 @@ class Poem extends Component {
                         <div class="italic">
                             {lines}
                         </div>
+
+                        <hr />
+
                         <div>
                             <b>{this.props.title}</b>, by {this.props.author}
                         </div>
