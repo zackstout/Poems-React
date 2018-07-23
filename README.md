@@ -19,7 +19,7 @@
 
 ## Screenshots:
 ![](src/images/making.png)
-![](src.images/viewing.png)
+![](src/images/viewing.png)
 
 ## Animation:
 ![](https://media.giphy.com/media/3odNQJs4G09Li5gac9/giphy.gif)
