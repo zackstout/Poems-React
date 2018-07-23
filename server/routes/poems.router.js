@@ -63,11 +63,11 @@ router.get('/random', function (req, res) {
             // Not sure why we can't check against resultRows.length ... Oh well, we'll just clip it on the client side:
             while (random_indices.length > 0) {
                 const popped = random_indices.pop();
-                // console.log(popped);
                 var queryText = `SELECT line_id, line, author, title, lineno FROM lines JOIN poems ON poems.poem_id=lines.poem_id WHERE line_id = ${popped};`;
                 db.query(queryText, [], function (errorMakingQuery, result) {
                     if (errorMakingQuery) {
                         console.log('Error with poems GET', errorMakingQuery);
+                        done();
                         res.sendStatus(501);
                     } else {
                         // console.log("RESULTS: ", result.rows[0]);
@@ -80,7 +80,6 @@ router.get('/random', function (req, res) {
 
             // Oooh it must be some async problem...Duh. Just super hack for now:
             setTimeout(() => {
-                // console.log("rows: ", resultRows);
                 done();
                 res.send(resultRows);
             }, 500);
@@ -95,6 +94,7 @@ router.get('/term/:term', function (req, res) {
         if (err) {
             console.log(err);
         } else {
+            // Still imperfect: for instance 'ass' gets 'assaulting'.
             var queryText = `SELECT line_id, line, author, title, lineno FROM lines JOIN poems ON poems.poem_id=lines.poem_id WHERE line LIKE '% ${req.params.term}%';`;
             db.query(queryText, [], function (errorMakingQuery, result) {
                 done();

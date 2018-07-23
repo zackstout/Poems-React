@@ -87,16 +87,19 @@ class App extends Component {
 
 
   render() {
+
     const Make = () => (
       <div class="App">
         <CreatePoem getPoems={this.getPoems} />
       </div>
     )
+
     const Feed = () => (
       <div class="App">
         <PoemsFeed poems={this.state.poems} />
       </div>
     )
+
     return (
       <Router>
         <div>
@@ -112,6 +115,7 @@ class App extends Component {
         </div>
       </Router>
     );
+    
   }
 }
 

@@ -14,20 +14,28 @@ class Poem extends Component {
     }
 
     render() {
-        const lines = this.props.lines.map(line => <p> { line.line } </p>);
+        const lines = this.props.lines.map(line => <p> {line.line} </p>);
 
         return (
-            <div class="poem">
-                <p> Title: {this.props.title} </p>
-                <p> Author: {this.props.author} </p>
+            <div class="poem row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <div class="poemContainer">
+                        <div class="italic">
+                            {lines}
+                        </div>
+                        <div>
+                            <b>{this.props.title}</b>, by {this.props.author}
+                        </div>
+                    </div>
 
-                <div>
-                    {lines}
+                    <button name={this.props.id} onClick={this.handleLike}>Like</button>
+                    <button name={this.props.id} onClick={this.handleInfo}>See Info</button>
+                </div>
+                <div class="col-md-2">
                 </div>
 
-                <button name={this.props.id} onClick={this.handleLike}>Like</button>
-       
-                <button name={this.props.id} onClick={this.handleInfo}>See Info</button>
                 <hr />
             </div>
         );

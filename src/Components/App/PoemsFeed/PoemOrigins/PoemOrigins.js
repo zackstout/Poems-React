@@ -5,12 +5,13 @@ class PoemOrigins extends Component {
     render() {
         console.log(this.props.info);
         const lines = this.props.info.map(line => <div key={line._id}> 
-            { line.line }
-            <ul>
-                <li>Author: { line.original_author }</li>
-                <li>Title: { line.original_title }</li>
-                <li>Line No.: { line.original_lineno }</li>
-            </ul>
+            <p class="italic">
+                { line.line }
+            </p>
+            <p> 
+                -- { line.original_author }, <span class="italic">{ line.original_title }</span>, { line.original_lineno }
+            </p>
+            <hr />
         </div>);
 
         return (

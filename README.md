@@ -9,10 +9,18 @@
 - Do not forget to add `&& node server/server.js` to the `start` script in `package.json`.
 - You do not need to install Express manually.
 - We need to figure out how to optimize the workflow, to how it initially is. I don't like restarting the server manually anytime we make any change, and rebuilding to see it.
-- React has great syntax warnings about == and unused vars etc.
+- React has great syntax warnings about == vs. === and unused vars etc.
 - Don't forget the constructor; needed to access `this.props`.
 - The up/down functionality is still buggy for duplicate rows...
 - Would be nice to optionally show the original authors/titles of each line (both in feed, and on poem creation).
+- This project is a nice confirmation of the lesson that it's much easier to code a project when you carefully think through and sketch out how you want it to work/look beforehand.
+- Some of our components should be decomposed.
+- Some of our components should be refactored for reusability (like for inputs) -- but then if you're passing *everything* into that component, it seems like you might as well just write it inline in JSX in the first place...
+
+## Screenshots:
+
+## Animation:
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
