@@ -33,7 +33,7 @@ class Poem extends Component {
                         </div>
                     </div>
 
-                    <button name={this.props.id} onClick={this.handleLike}>Like</button>
+                    {/* <button name={this.props.id} onClick={this.handleLike}>Like</button> */}
                     <button name={this.props.id} onClick={this.handleInfo}>See Info</button>
                 </div>
                 <div class="col-md-2">

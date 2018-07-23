@@ -16,9 +16,13 @@
 - This project is a nice confirmation of the lesson that it's much easier to code a project when you carefully think through and sketch out how you want it to work/look beforehand.
 - Some of our components should be decomposed.
 - Some of our components should be refactored for reusability (like for inputs) -- but then if you're passing *everything* into that component, it seems like you might as well just write it inline in JSX in the first place...
+- Should add form validation (because it breaks the view if we don't. And also we just should).
 
 ## Screenshots:
+### Making a Poem:
 ![](src/images/making.png)
+
+### Viewing Poems Feed:
 ![](src/images/viewing.png)
 
 ## Animation:
